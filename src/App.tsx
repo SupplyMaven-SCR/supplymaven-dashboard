@@ -14,11 +14,11 @@ export default function App() {
   });
 
   // Group by category
-  const grouped = commoditiesWithRisk?.reduce((acc, item) => {
-    if (!acc[item.category]) acc[item.category] = [];
-    acc[item.category].push(item);
-    return acc;
-  }, {} as Record<string, typeof commoditiesWithRisk>);
+const grouped = commoditiesWithRisk?.reduce((acc, item) => {
+  if (!acc[item.category]) acc[item.category] = [];
+  acc[item.category].push(item);
+  return acc;
+}, {} as Record<string, any[]>);
 
   // Calculate stats
   const stats = {
@@ -81,9 +81,9 @@ export default function App() {
         )}
 
         {/* Commodity Tables by Category */}
-        {grouped && Object.entries(grouped).map(([category, items]) => (
-          <CommodityTable key={category} category={category} items={items} />
-        ))}
+       {grouped && Object.entries(grouped).map(([category, items]) => (
+  <CommodityTable key={category} category={category} items={items as any[]} />
+))}
       </div>
 
       {/* Footer */}
